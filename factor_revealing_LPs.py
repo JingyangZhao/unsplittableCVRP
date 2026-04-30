@@ -255,17 +255,18 @@ if __name__ == "__main__":
     generalflag = int(sys.argv[1])
     N = int(sys.argv[2])
     randomflag = int(sys.argv[3])
+    metricflag = int(sys.argv[4])
 
     start = time.time()
 
-    res = lp(generalflag, N, randomflag)
+    res = lp(generalflag, N, randomflag, metricflag)
 
     end = time.time()
     runtime = end - start
 
     with open("results.txt", "a") as f:
         fcntl.flock(f, fcntl.LOCK_EX)
-        f.write(f"{generalflag} {N} {randomflag} {res} {runtime}\n")
+        f.write(f"{metricflag} {randomflag} {generalflag} {N} {res} {runtime}\n")
         f.flush()
         fcntl.flock(f, fcntl.LOCK_UN)
     
